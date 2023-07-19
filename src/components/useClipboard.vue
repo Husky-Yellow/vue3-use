@@ -1,12 +1,24 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useClipboard, usePermission } from '@vueuse/core'
 
 const input = ref('')
 
-const { text, isSupported, copy } = useClipboard()
+const { text, copied, copy, isSupported } = useClipboard({
+  legacy:true,
+})
 const permissionRead = usePermission('clipboard-read')
 const permissionWrite = usePermission('clipboard-write')
+
+onMounted(async () => {
+  console.log(`1`);
+
+  // if copy something somewhere, will not get the value
+  console.log(isSupported.value, copied.value, text.value)
+  await copy("hello")
+
+  console.log(copied.value, text.value) // here will be hello
+})
 </script>
 
 <template>

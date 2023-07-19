@@ -1,9 +1,11 @@
 <script setup>
 import UseClipboard from './components/useClipboard.vue'
+import UseFullscreen from './components/useFullscreen.vue'
 </script>
 
 <template>
   <UseClipboard />
+  <UseFullscreen />
 </template>
 
 <style scoped>
